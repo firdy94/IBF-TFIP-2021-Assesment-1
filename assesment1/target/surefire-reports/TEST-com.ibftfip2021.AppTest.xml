@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.ibftfip2021.AppTest" time="0.062" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.ibftfip2021.AppTest" time="0.049" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="SG"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire/surefirebooter9746062680788942890.jar /Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire 2021-12-14T15-26-42_205-jvmRun1 surefire12769652077179577600tmp surefire_06983682040204766116tmp"/>
+    <property name="sun.java.command" value="/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire/surefirebooter13147927726251457246.jar /Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire 2021-12-14T16-21-02_031-jvmRun1 surefire8979381432091455603tmp surefire_09893214360966699360tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/test-classes:/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/classes:/Users/mac_sur/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/mac_sur/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/mac_sur/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/mac_sur/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/mac_sur/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/mac_sur/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/mac_sur/.m2/repository/commons-cli/commons-cli/1.5.0/commons-cli-1.5.0.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire/surefirebooter9746062680788942890.jar"/>
+    <property name="surefire.real.class.path" value="/Users/mac_sur/Desktop/Assessment/IBF-TFIP-2021-Assesment-1/assesment1/target/surefire/surefirebooter13147927726251457246.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.1+12-LTS-39"/>
@@ -54,5 +54,5 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.ibftfip2021.AppTest" time="0.035"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.ibftfip2021.AppTest" time="0.041"/>
 </testsuite>

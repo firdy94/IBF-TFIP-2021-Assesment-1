@@ -29,7 +29,7 @@ public class HTTPServer {
 
 		try {
 			while (!server.isClosed()) {
-				server.setSoTimeout(120000);
+				server.setSoTimeout(1200000);
 				Socket socket = server.accept();
 				HTTPClientConnection clientSocket = new HTTPClientConnection(socket, inputPath);
 				threadPool.submit(clientSocket);

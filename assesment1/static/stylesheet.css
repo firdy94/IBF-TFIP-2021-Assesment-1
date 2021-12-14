@@ -1,0 +1,25 @@
+h1{   
+    color:forestgreen;  /* element selector styles all teh elements falling into teh selected one eg: all h1 elements*/
+    font-size: 4em;
+    align-self: center;
+}
+
+body{
+    background-color: black; 
+}
+p{
+    color:aliceblue;
+    align-self: center;
+    font-size: 2em;
+}
+div{
+    display: flex; /*can use block/inline as well for flex all items must be in div*/
+    flex-direction: column;
+    justify-content: space-around;
+}
+img{
+    size: 2vh;
+    border: 1px solid lightgray;
+    padding: 5px;
+    margin: 10vw;
+}
