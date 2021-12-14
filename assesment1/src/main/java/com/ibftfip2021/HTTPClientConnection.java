@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -61,14 +59,11 @@ public class HTTPClientConnection implements Runnable {
 	}
 
 	public void clientInputParser() throws IOException {
+		List<String> inputSegments = new ArrayList<>();
 		while (!socket.isClosed()) {
-			List<String> inputSegments = Arrays.asList(serverIn.split(" "));
-			String[] fileSegments = (inputSegments.get(1)).split(".");
-			System.out.println(inputSegments.get(0));
-			System.out.println(inputSegments.get(1));
-			System.out.println(fileSegments[0]);
-			System.out.println(fileSegments[1]);
-			System.out.println(inputPath.get(0));
+			for (String s : serverIn.split(" ")) {
+				inputSegments.add(s);
+			}
 			if (inputSegments.get(1).equals("/")) {
 				inputSegments.remove("/");
 				inputSegments.add(1, "/index.html");
@@ -80,7 +75,7 @@ public class HTTPClientConnection implements Runnable {
 				buffWrite.flush();
 				closeSocket(socket);
 			}
-			if (fileSegments[1].equals("/png")) {
+			if (inputSegments.get(1).endsWith(".png")) {
 				for (String dirPath : inputPath) {
 					File filePath = Paths.get(dirPath, inputSegments.get(1)).toFile();
 					if (!filePath.exists()) {

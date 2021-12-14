@@ -1,22 +1,15 @@
 package com.ibftfip2021;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
-/**
- * Hello world!
- *
- */
 public class Main {
 
     private static int portNum = 3000;
-    private static HashMap<String, String> inputFlags = new HashMap<>();
     private static List<String> pathInputs = new ArrayList<>();
     private static String currentPath = new File("").getAbsolutePath();
 
