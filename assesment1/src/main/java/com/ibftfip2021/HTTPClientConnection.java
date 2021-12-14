@@ -2,14 +2,17 @@ package com.ibftfip2021;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,7 +36,9 @@ public class HTTPClientConnection implements Runnable {
 		try (InputStream is = socket.getInputStream(); OutputStream out = socket.getOutputStream()) {
 			dataInS = new DataInputStream(new BufferedInputStream(is));
 			dataOutS = new DataOutputStream(new BufferedOutputStream(out));
-			serverIn = dataInS.readUTF();
+			BufferedReader buff = new BufferedReader(new InputStreamReader(dataInS));
+			serverIn = buff.readLine();
+			System.out.println(serverIn);
 			clientInputParser();
 		}
 
@@ -54,7 +59,7 @@ public class HTTPClientConnection implements Runnable {
 			}
 			List<String> fileSegments = Arrays.asList(inputSegments.get(1).split("."));
 			if (!inputSegments.get(0).equals("GET")) {
-				String msg = String.format("HTTP/1.1 405 Method Not Allowed\r\n\r\n%s not supported\r\n",
+				String msg = String.format("HTTP/1.1 405 Method Not Allowed%r%n%r%n%s not supported\r\n",
 						inputSegments.get(0));
 				dataOutS.writeUTF(msg);
 				dataOutS.flush();
@@ -64,14 +69,14 @@ public class HTTPClientConnection implements Runnable {
 				for (String dirPath : inputPath) {
 					File filePath = Paths.get(dirPath, inputSegments.get(1)).toFile();
 					if (!filePath.exists()) {
-						String msg = String.format("HTTP/1.1 404 Not Found\r\n\r\n%s not supported\r\n",
+						String msg = String.format("HTTP/1.1 404 Not Found%r%n%r%n%s not supported\r\n",
 								inputSegments.get(1));
 						dataOutS.writeUTF(msg);
 						dataOutS.flush();
 						closeSocket(socket);
 
 					} else {
-						String msg = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n";
+						String msg = "HTTP/1.1 200 OK\r\nContent-Type: image/png%r%n%r%n";
 						dataOutS.writeUTF(msg);
 						dataOutS.flush();
 						byte[] imgBytes = Files.readAllBytes(filePath.toPath());
@@ -81,12 +86,11 @@ public class HTTPClientConnection implements Runnable {
 					}
 
 				}
-			}
-			else {
+			} else {
 				for (String dirPath : inputPath) {
 					File filePath = Paths.get(dirPath, inputSegments.get(1)).toFile();
 					if (!filePath.exists()) {
-						String msg = String.format("HTTP/1.1 404 Not Found\r\n\r\n%s not supported\r\n",
+						String msg = String.format("HTTP/1.1 404 Not Found%r%n%r%n%s not supported\r\n",
 								inputSegments.get(1));
 						dataOutS.writeUTF(msg);
 						dataOutS.flush();
@@ -103,7 +107,7 @@ public class HTTPClientConnection implements Runnable {
 					}
 
 				}
-				
+
 			}
 		}
 
