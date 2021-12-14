@@ -43,8 +43,10 @@ public class HTTPClientConnection implements Runnable {
 		try (InputStream is = socket.getInputStream(); OutputStream out = socket.getOutputStream()) {
 			dataInS = new DataInputStream(new BufferedInputStream(is));
 			dataOutS = new DataOutputStream(new BufferedOutputStream(out));
-			buffRead = new BufferedReader(new InputStreamReader(dataInS));
-			buffWrite = new BufferedWriter(new OutputStreamWriter(dataOutS));
+			Reader reader = new InputStreamReader(dataInS);
+			buffRead = new BufferedReader(reader);
+			Writer writer = new OutputStreamWriter(dataOutS);
+			buffWrite = new BufferedWriter(writer);
 			serverIn = buffRead.readLine();
 			System.out.println(serverIn);
 			clientInputParser();
@@ -72,7 +74,7 @@ public class HTTPClientConnection implements Runnable {
 				inputSegments.add(1, "/index.html");
 			}
 			if (!inputSegments.get(0).equals("GET")) {
-				String msg = String.format("HTTP/1.1 405 Method Not Allowed%r%n%r%n%s not supported\r\n",
+				String msg = String.format("HTTP/1.1 405 Method Not Allowed\r\n\r\n%s not supported\r\n",
 						inputSegments.get(0));
 				buffWrite.write(msg);
 				buffWrite.flush();
@@ -82,13 +84,13 @@ public class HTTPClientConnection implements Runnable {
 				for (String dirPath : inputPath) {
 					File filePath = Paths.get(dirPath, inputSegments.get(1)).toFile();
 					if (!filePath.exists()) {
-						String msg = String.format("HTTP/1.1 404 Not Found%r%n%r%n%s not supported\r\n",
+						String msg = String.format("HTTP/1.1 404 Not Found\r\n\r\n%s not supported\r\n",
 								inputSegments.get(1));
 						buffWrite.write(msg);
 						buffWrite.flush();
 						closeSocket(socket);
 					} else {
-						String msg = "HTTP/1.1 200 OK\r\nContent-Type: image/png%r%n%r%n";
+						String msg = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n";
 						buffWrite.write(msg);
 						buffWrite.flush();
 						byte[] imgBytes = Files.readAllBytes(filePath.toPath());
@@ -101,7 +103,7 @@ public class HTTPClientConnection implements Runnable {
 				for (String dirPath : inputPath) {
 					File filePath = Paths.get(dirPath, inputSegments.get(1)).toFile();
 					if (!filePath.exists()) {
-						String msg = String.format("HTTP/1.1 404 Not Found%r%n%r%n%s not supported\r\n",
+						String msg = String.format("HTTP/1.1 404 Not Found\r\n\r\n%s not supported\r\n",
 								inputSegments.get(1));
 						buffWrite.write(msg);
 						buffWrite.flush();
