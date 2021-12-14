@@ -55,5 +55,9 @@ public class Main {
             e.printStackTrace();
         }
 
+        HTTPServer myServer = new HTTPServer(portNum, pathInputs);
+        myServer.startServer(portNum, inputPath);
+        myServer.startServer();
+
     }
 }

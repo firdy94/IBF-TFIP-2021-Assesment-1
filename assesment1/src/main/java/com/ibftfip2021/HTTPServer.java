@@ -15,7 +15,13 @@ public class HTTPServer {
 	private int portNum;
 	private List<String> inputPath = new ArrayList<>();
 
-	public void startServer(int portNum, List<String> inputPath) throws IOException {
+	public HTTPServer(int portNum, List<String> inputPath) {
+		this.portNum = portNum;
+		this.inputPath = inputPath;
+
+	}
+
+	public void startServer() throws IOException {
 		ExecutorService threadPool = Executors.newFixedThreadPool(3);
 		ServerSocket server = new ServerSocket(portNum);
 		checkPaths(server);
